@@ -14,13 +14,24 @@ app.get("/api/combine", (req,res)=> {
     }
 
     // extract the query string params
+    result.name1 = (req.query.name1 || 'John').trim()
+    result.name2 = (req.query.name2 || 'Cena').trim()
 
+    // compute combinations
+    const name1 = result.name1
+    const name2 = result.name2
 
-    // compute combinations 
-    
+    const combinations = [
+        { name: name1.slice(0, Math.ceil(name1.length / 2)) + name2.slice(Math.floor(name2.length / 2)), goodness: Math.random() * 5 },
+        { name: name2.slice(0, Math.ceil(name2.length / 2)) + name1.slice(Math.floor(name1.length / 2)), goodness: Math.random() * 5 },
+        { name: name1 + name2.slice(-1), goodness: Math.random() * 5 },
+        { name: name2 + name1.slice(-1), goodness: Math.random() * 5 }
+    ]
 
     // create an array of results
-    result.results.push({id: 1, name:"Johnob", goodness:3.4})
+    combinations.forEach((combo, index) => {
+        result.results.push({ id: index + 1, name: combo.name, goodness: parseFloat(combo.goodness.toFixed(2)) })
+    })
 
 
     // write the results to a file
