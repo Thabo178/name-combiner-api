@@ -14,11 +14,10 @@ app.get("/api/combine", (req,res)=> {
     }
 
     // extract the query string params
-    result.name1 = req.query.name1 || ''
-    result.name2 = req.query.name2 || ''
+
 
     // compute combinations 
-
+    
 
     // create an array of results
     result.results.push({id: 1, name:"Johnob", goodness:3.4})
