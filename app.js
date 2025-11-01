@@ -36,7 +36,7 @@ app.get("/api/combine", (req,res)=> {
 
     // write the results to a file
     const filePath = path.join(__dirname, '/logs/output.log')
-    fs.appendFile(filePath, `${Date.now()} | ${JSON.stringify(result)}`, (err)=>{
+    fs.appendFile(filePath, `${Date.now()} | ${JSON.stringify(result)}\n`, (err)=>{
         console.log(err)
 
     })
